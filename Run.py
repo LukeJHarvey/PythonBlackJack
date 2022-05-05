@@ -1,3 +1,3 @@
-from Game import Game
+from BlackJack import BlackJack
 if __name__ == '__main__':
-    bj_game = Game()
+    bj_game = BlackJack()

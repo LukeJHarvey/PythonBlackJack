@@ -1,8 +1,7 @@
-from tkinter import N
 from Player import Player
 from Dealer import Dealer
 from Shoe import Shoe
-class Game:
+class BlackJack:
     def __init__(self):
         self.initPlayers()
         self.dealer = Dealer()
@@ -44,7 +43,7 @@ class Game:
     def initDeck(self):
         self.shoe = Shoe()
         deckCount = input("How many Decks in Shoe?: ")
-        self.shoe.generate_deck(int(deckCount))
+        self.shoe.generateDeck(int(deckCount))
         shuffleCount = int(input("How many deck shuffles?: "))
         for _ in range(shuffleCount):
             self.shoe.shuffle()
@@ -53,10 +52,10 @@ class Game:
         for i in range(2):
             for p in self.players:
                 c = self.shoe.draw()
-                p.add_card(c)
+                p.addCard(c)
                 print("Player {} dealt {} Face Up.".format(p.name, c))
             c = self.shoe.draw()
-            self.dealer.add_card(c)
+            self.dealer.addCard(c)
             print("Dealer dealt {} Face {}.".format(c, "Down" if i == 0 else "Up"))
         
     def playerTurn(self, player):
@@ -67,15 +66,15 @@ class Game:
                 print("{} hits.".format(player.name))
                 c = self.shoe.draw()
                 print("{} is dealt {}".format(player.name, c))
-                player.add_card(c)
-                print("{}'s hand: {}".format(player.name, player.hand_string()))
+                player.addCard(c)
+                print("{}'s hand: {}".format(player.name, player.handString()))
             else:
                 hit = False
-                print("{} Stands with hand {}".format(player.name, player.hand_string()))
-                print("{}'s hand value is: {}".format(player.name, player.get_highest_hand_value()))
+                print("{} Stands with hand {}".format(player.name, player.handString()))
+                print("{}'s hand value is: {}".format(player.name, player.getHighestHandValue()))
             if player.bust == True:
                 hit = False
-                print("{} busts with hand {}".format(player.name, player.hand_string()))
+                print("{} busts with hand {}".format(player.name, player.handString()))
             
 
 
@@ -94,10 +93,10 @@ class Game:
                 if not p.bust:
                     print("{} wins the hand against the dealers bust!".format(p.name))
         else:
-            dealerHandValue = self.dealer.get_highest_hand_value()
+            dealerHandValue = self.dealer.getHighestHandValue()
             for p in self.players:
                 if not p.bust:
-                    playerHandValue = p.get_highest_hand_value()
+                    playerHandValue = p.getHighestHandValue()
                     if playerHandValue > dealerHandValue:
                         print("{} wins the hand against the dealer!".format(p.name))
                     elif playerHandValue == dealerHandValue:
@@ -107,8 +106,8 @@ class Game:
 
         #Put all Hands back into discard pile
         for p in self.players:
-            self.shoe.add_to_discard(p.clear_hand())
-        self.shoe.add_to_discard(self.dealer.clear_hand())
+            self.shoe.addToDiscard(p.clearHand())
+        self.shoe.addToDiscard(self.dealer.clearHand())
 
         #Decide to play next Hand
         cont = input("Do you wish to play another hand?(y/n): ")

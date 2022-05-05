@@ -6,7 +6,7 @@ class Shoe:
         self.deck = []
         self.discard = []
     
-    def generate_deck(self, num):
+    def generateDeck(self, num):
         for _ in range(num):
             for suit in Shoe.DECK_LAYOUT[1]:
                 for value in Shoe.DECK_LAYOUT[0]:
@@ -23,10 +23,10 @@ class Shoe:
             self.deck = self.discard
             self.discard = []
     
-    def add_to_discard(self, hand):
+    def addToDiscard(self, hand):
         for c in hand:
             self.discard.append(c)
 
-    def print_deck(self):
+    def printDeck(self):
         for i in self.deck:
             print(i)

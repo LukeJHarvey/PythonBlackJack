@@ -6,7 +6,7 @@ class CountStrategy:
             self.blackJackValues = data[countStrategy]
         self.strategy = countStrategy
     
-    def get_bj_values(self, value):
+    def getBJValues(self, value):
         if isinstance(value, str):
             if value in ["10", "J", "Q", "K"]:
                 return self.blackJackValues["10"]

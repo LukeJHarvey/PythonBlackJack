@@ -19,12 +19,12 @@ class Card:
         self.value = str(_value) # A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
         self.suit = _suit # D, C, H, S
     
-    def get_value(self):
+    def getValue(self):
         return str(self.value)
-    def get_suit(self):
+    def getSuit(self):
         return self.suit
 
-    def get_value_name(self):
+    def getValueName(self):
         if self.value in ["A", "J", "Q", "K"]:
             if self.value == "A": return "Ace"
             elif self.value == "J": return "Jack"
@@ -32,16 +32,16 @@ class Card:
             elif self.value == "K": return "King"
         return str(self.value)
 
-    def get_suit_name(self):
+    def getSuitName(self):
         if self.value == "D": return "Diamonds"
         elif self.value == "C": return "Clubs"
         elif self.value == "H": return "Hearts"
         else: return "Spades"
 
     def print(self):
-        ret = self.get_value_name()
+        ret = self.getValueName()
         ret += " of "
-        ret += self.get_suit_name()
+        ret += self.getSuitName()
         return ret
 
     def __str__(self):

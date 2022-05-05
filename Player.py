@@ -10,20 +10,20 @@ class Player(AbsPlayer):
 
     def choice(self):
         if self.manual:
-            print("{}'s Current Hand: {}".format(self.name, self.hand_string()))
+            print("{}'s Current Hand: {}".format(self.name, self.handString()))
             option = input("Hit(h) or Stay(s)?: ")
-            #self.show_tip()
+            #self.showTip()
             if option == "h":
                 return True
             else:
                 return False
         else: 
-            hand_value = self.get_hand_value()
+            hand_value = self.getHandValue()
             if min(hand_value) >= 17:
                 return False
             else:
                 return True
 
-    def show_tip(self):
+    def showTip(self):
         print("TIP")
         pass

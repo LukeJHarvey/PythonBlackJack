@@ -4,7 +4,7 @@ class AbsPlayer:
         self.hand = [] #Array of Type Card
         self.bust = False #Boolean, Is Player Busted
 
-    def get_hand_value(self):
+    def getHandValue(self):
         """Return the Value of Players current hand
         If an Ace is in play, then split to multiple totals
         """
@@ -21,15 +21,15 @@ class AbsPlayer:
                     totals[i] += Card.CARD_VALUE[c.value]
         return totals
 
-    def get_highest_hand_value(self):
-        totals = self.get_hand_value()
+    def getHighestHandValue(self):
+        totals = self.getHandValue()
         max = -1
         for i in totals:
             if i >= max and i <= 21:
                 max = i
         return max
 
-    def add_card(self, new_card):
+    def addCard(self, new_card):
         """Add an additional card to players hand
 
         Keyword arguments:
@@ -39,12 +39,12 @@ class AbsPlayer:
         False -- Player busts
         """
         self.hand.append(new_card)
-        if min(self.get_hand_value()) > 21:
+        if min(self.getHandValue()) > 21:
             self.bust = True
             return False
         return True
     
-    def clear_hand(self):
+    def clearHand(self):
         """Empty player hand and reset bust status
         Return previous hand
         """
@@ -53,13 +53,13 @@ class AbsPlayer:
         self.bust = False
         return ret_hand
     
-    def print_hand(self):
+    def printHand(self):
         ret = ""
         for c in self.hand:
             ret += "{}({}) ".format(c.value, c.suit)
         print(ret)
 
-    def hand_string(self):
+    def handString(self):
         ret = ""
         for c in self.hand:
             ret += "{}({}) ".format(c.value, c.suit)

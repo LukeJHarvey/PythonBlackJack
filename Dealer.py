@@ -7,7 +7,7 @@ class Dealer(AbsPlayer):
 
 
     def choice(self):
-        hand_value = self.get_hand_value()
+        hand_value = self.getHandValue()
         if min(hand_value) >= 17:
             return False
         else:
