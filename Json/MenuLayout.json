@@ -1,0 +1,146 @@
+{
+    "Name": "Main Menu",
+    "Type": "Folder",
+    "Options": {
+    },
+    "Folder": [
+        {
+            "Name": "Play",
+            "Type": "Button",
+            "Action": "Play"
+        },
+        {
+            "Name": "Settings",
+            "Type": "Folder",
+            "Options": {
+                "Back Button": true
+            },
+            "Folder": [
+                {
+                    "Name": "General",
+                    "Type": "Folder",
+                    "Options": {
+                    },
+                    "Folder": [
+                        {
+                            "Name": "Hand Speed",
+                            "Type": "Field",
+                            "Field": {
+                                "Type": "Choice",
+                                "FieldVar": "settings.HandSpeed",
+                                "Choices": [1,2,3],
+                                "Notes": "Automated Hand Speed\n1: Instant\n2: 100ms\n3: 500ms"
+                            }
+                        },
+                        {
+                            "Name": "Betting",
+                            "Type": "Field",
+                            "Field": {
+                                "Type": "Choice",
+                                "FieldVar": "settings.Betting",
+                                "Choices": ["Disable"],
+                                "Notes": "Is betting and Money Enabled or Disabled?"
+                            }
+                        }
+                    ],
+                    "Buttons": [
+                        {
+                            "Name": "Save",
+                            "Action": "settings.Save"
+                        },
+                        {
+                            "Name": "Back",
+                            "Action": "Back"
+                        }
+                    ]
+                },
+                {
+                    "Name": "Players",
+                    "Type": "Folder",
+                    "Options": {
+                    },
+                    "Folder": [
+                        {
+                            "Name": "Current Players",
+                            "Type": "Folder",
+                            "Options": {
+                                "Import": "SavedData/SavedPlayers.json",
+                                "Format": "SavedData/PlayerMenuLayout.json",
+                                "ImportFolders": true
+                            },
+                            "Buttons": [
+                                {
+                                    "Name": "Update Player",
+                                    "Action": "local.Save"
+                                },
+                                {
+                                    "Name": "Back",
+                                    "Action": "Back"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "Create New Player",
+                            "Type": "Folder",
+                            "Options": {
+                                "Export": "SavedData/SavedPlayers.json",
+                                "Format": "SavedData/PlayerMenuLayout.json"
+                            },
+                            "Buttons": [
+                                {
+                                    "Name": "Create Player",
+                                    "Action": "local.Create"
+                                },
+                                {
+                                    "Name": "Back",
+                                    "Action": "Back"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Shoe",
+                    "Type": "Folder",
+                    "Option": {
+                    },
+                    "Folder": [
+                        {
+                            "Name": "Deck Count",
+                            "Type": "Field",
+                            "Field": {
+                                "Type": "Int",
+                                "FieldVar": "settings.DeckCount",
+                                "Notes": "Amount of Decks to Use"
+                            }
+                        },
+                        {
+                            "Name": "Shuffle Amount",
+                            "Type": "Field",
+                            "Field": {
+                                "Type": "Int",
+                                "FieldVar": "settings.ShuffleCount",
+                                "Notes": "Amount of Times to Shuffle Before Play"
+                            }
+                        }
+                    ],
+                    "Buttons": [
+                        {
+                            "Name": "Save",
+                            "Action": "settings.Save"
+                        },
+                        {
+                            "Name": "Back",
+                            "Action": "Back"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Quit",
+            "Type": "Button",
+            "Action": "Exit"
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "Location": "Players",
+    "Name": "local.PlayerName",
+    "Type": "Folder",
+    "Options": {
+    },
+    "Folder": [
+        {
+            "Name": "Player Name",
+            "Type": "Field",
+            "Field": {
+                "FieldVar": "local.PlayerName",
+                "Type": "String",
+                "Default": "John"
+            }
+        },
+        {
+            "Name": "Player Type",
+            "Type": "Field",
+            "Field": {
+                "FieldVar": "local.PlayerType",
+                "Type": "Choice",
+                "Choices": ["Automatic", "Manual"],
+                "Default": 0
+            }
+        },
+        {
+            "Name": "Count Strategy",
+            "Type": "Field",
+            "Field": {
+                "FieldVar": "local.PlayerStrat",
+                "Type": "Choice",
+                "Choices": [
+                    "Hi-Lo",
+                    "Hi-Lo I",
+                    "Hi-Lo II",
+                    "KO",
+                    "Omega II",
+                    "Halves",
+                    "Zen Count",
+                    "10 Count"
+                ],
+                "Default": 0
+            }
+        },
+        {
+            "Name": "Tips",
+            "Type": "Field",
+            "Field": {
+                "FieldVar": "local.PlayerTips",
+                "Type": "Choice",
+                "Choices": ["On", "Off"],
+                "Default": 0
+            }
+        },
+        {
+            "Name": "Money",
+            "Type": "Field",
+            "Field": {
+                "FieldVar": "local.PlayerMoney",
+                "Type": "Int",
+                "Default": 1000
+            }
+        }
+    ]
+}

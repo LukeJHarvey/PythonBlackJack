@@ -1,0 +1,74 @@
+{
+    "_MenuLayoutSchema": {
+        "MenuEntry": {
+            "Name": {
+                "_definition": "Name Displayed for Menu Entry",
+                "_type": "String"
+            },
+            "Type": {
+                "_definition": "Type of Menu Entry.",
+                "_type": "Enumeration",
+                "_enum": {
+                    "Folder": {
+                        "_definition": "Contains other Menu Entree's",
+                        "_type": "Dict"
+                    },
+                    "Field": {
+                        "_definition": "Changeable Field",
+                        "_type": "Dict",
+                        "FieldName": {
+                            "_definition": "Name of Field in Settings File",
+                            "_type": "String"
+                        },
+                        "Type": {
+                            "_definition": "Type of Field",
+                            "_type": "Enumeration",
+                            "_enum": {
+                                "String": "User inputs strings",
+                                "Int": "User inputs integer",
+                                "Float": "User inputs float",
+                                "Choice": "User goes left and right through choices"
+                            }
+                        },
+                        "Min Value": {
+                            "_definition": "Minimum Value. Used for Int's and Float's",
+                            "_type": "Int or Float depending on Type"
+                        },
+                        "Max Value": {
+                            "_definition": "Maximum Value. Used for Int's and Float's",
+                            "_type": "Int or Float depending on Type"
+                        },
+                        "Start Value": {
+                            "_definition": "Starting Value",
+                            "_type": "Depends on FieldType"
+                        },
+                        "Choices": {
+                            "_definition": "Choices user can go through",
+                            "_type": "Array"
+                        },
+                        "Notes": {
+                            "_definition": "Notes about the field for User to understand",
+                            "_type": "String"
+                        }
+                    },
+                    "Button": {
+                        "_definition": "Does an action when Clicked",
+                        "_type": "String",
+                        "Action": {
+                            "_definition": "Action Name",
+                            "_type": "String"
+                        }
+                    },
+                    "Import": {
+                        "_definition": "Import Fields from another File",
+                        "_type": "Dict",
+                        "File Name": {
+                            "_definition": "Name of File you're Importing from",
+                            "_type": "String"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "Players": [
+        {
+            "PlayerName": "John",
+            "PlayerType": "Automatic",
+            "PlayerStrat": "Hi-Lo",
+            "PlayerTips": "Off",
+            "PlayerMoney": 1000
+        },
+        {
+            "PlayerName": "Alice",
+            "PlayerType": "Automatic",
+            "PlayerStrat": "Hi-Lo I",
+            "PlayerTips": "Off",
+            "PlayerMoney": 500
+        },
+        {
+            "PlayerName": "Sarah",
+            "PlayerType": "Automatic",
+            "PlayerStrat": "10 Count",
+            "PlayerTips": "Off",
+            "PlayerMoney": 700
+        }
+    ]
+}
