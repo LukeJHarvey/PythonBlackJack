@@ -1,11 +1,12 @@
 from AbsPlayer import AbsPlayer
 class Player(AbsPlayer):
     
-    def __init__(self, name, manual, tips=False):
+    def __init__(self, name, manual, tips=False, money=1000):
         super().__init__()
         self.name = name
         self.manual = manual #Boolean, is this player controlled by the user
         self.tips = tips #Boolean, if this player is controlled by the user should tips show
+        #self.money = money #Int, amount of money player currently has.
 
 
     def choice(self):

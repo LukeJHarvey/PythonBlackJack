@@ -1,4 +1,4 @@
-from Card import Card
+from Game.Card import Card
 class AbsPlayer:
     def __init__(self):
         self.hand = [] #Array of Type Card

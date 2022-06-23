@@ -1,0 +1,25 @@
+{
+    "Players": [
+        {
+            "Name": "John",
+            "Manual":false,
+            "Money": 1000
+        },
+        {
+            "Name": "Alice",
+            "Manual":false,
+            "Money": 1000
+        },
+        {
+            "Name": "Peter",
+            "Manual":false,
+            "Money": 1000
+        },
+        {
+            "Name": "Player",
+            "Manual": false,
+            "tips": false,
+            "Money": 1000
+        }
+    ]
+}

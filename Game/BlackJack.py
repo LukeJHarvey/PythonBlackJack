@@ -1,52 +1,78 @@
-from Player import Player
-from Dealer import Dealer
+from Player.Player import Player
+from Player.Dealer import Dealer
 from Shoe import Shoe
+from Utils import YNInput, typedInput
+import json
 class BlackJack:
-    def __init__(self):
-        self.initPlayers()
+    def __init__(self, initPlayersFileName = "", initDeckFileName = ""):
+        self.initPlayers(initPlayersFileName)
         self.dealer = Dealer()
-        self.initDeck()
+        self.initDeck(initDeckFileName)
         self.gameLoop()
 
-    def initPlayers(self):
+    def initPlayers(self, initPlayersFileName):
         self.players = []
+        if initPlayersFileName == "":
+            if YNInput("Use Json File to Load Player Information?(yes/no): "):
+                fileName = input("Name of Json File: ")
+                self.loadPlayersJson(fileName)
+            if YNInput("Do you wish to create another player?(yes/no): "):
+                self.createPlayers()
+        else:
+            self.loadPlayersJson(initPlayersFileName)
+            if YNInput("Do you wish to create another player?(yes/no): "):
+                self.createPlayers()
+
+    def loadPlayersJson(self, fileName):
+        if ".json" not in fileName: fileName += ".json"
+        with open(fileName, "r") as file:
+            data = json.loads(file.read())
+            cashStart = -1 if not "Start_Cash" in data else data["Start_Cash"]
+            for player in data["Players"]:
+                if cashStart == -1:
+                    self.players.append(Player(player["Name"], player["Manual"], player["Money"]))
+                else:
+                    self.players.append(Player(player["Name"], player["Manual"], cashStart))
+
+    def createPlayers(self, startMoney = 1000):
         create = True
-        id = 1
         while create:
             #Player Creation
-            name = input("Player {}'s Name: ".format(id))
-            manual = input("Is {} automatic?(y/n): ".format(name))
-            while manual not in ["y", "n"]:
-                print("Incorrect input, only accepting 'y' or 'n'")
-                manual = input("Is {} automatic?(y/n): ".format(name))
-            manual = False if manual == "y" else True
+            name = input("New Player's Name: ")
+
+            manual = YNInput("Is {} automatic?(yes/no): ".format(name))
+
             tips = False
             if manual:
-                tips = input("Do you want tips while playing?(y/n): ")
-                while tips not in ["y", "n"]:
-                    print("Incorrect input, only accepting 'y' or 'n'")
-                    tips = input("Do you want tips while playing?(y/n): ")
-                tips = True if tips == "y" else False
+                tips = YNInput("Do you want tips while playing?(yes/no): ")
+
+            money = startMoney
+            #money = typedInput("Starting Cash Amount({} if empty): ".format(startMoney), int)
+            #money = startMoney if money is -1 else money
 
             #Player Created
-            self.players.append(Player(name, manual))
+            self.players.append(Player(name, manual, tips, money))
             print("Player {} Created!".format(name))
 
             #Prompt to create another player
-            another_player = input("Do you wish to create another player?(y/n): ")
-            while another_player not in ["y", "n"]:
-                print("Incorrect input, only accepting 'y' or 'n'")
-                another_player = input("Do you wish to create another player?(y/n): ")
-            create = True if another_player == "y" else False
-            id += 1
+            create = YNInput("Do you wish to create another player?(yes/no): ")
 
-    def initDeck(self):
-        self.shoe = Shoe()
-        deckCount = input("How many Decks in Shoe?: ")
-        self.shoe.generateDeck(int(deckCount))
-        shuffleCount = int(input("How many deck shuffles?: "))
-        for _ in range(shuffleCount):
-            self.shoe.shuffle()
+    def initDeck(self, initDeckFileName):
+        if initDeckFileName == "":
+            self.shoe = Shoe()
+            deckCount = typedInput("How many Decks in Shoe?: ", int)
+            self.shoe.generateDeck(deckCount)
+            shuffleCount = typedInput("How many deck shuffles?: ", int)
+            for _ in range(shuffleCount):
+                self.shoe.shuffle()
+        else:
+            if ".json" not in initDeckFileName: initDeckFileName += ".json"
+            with open(initDeckFileName, "r") as file:
+                data = json.loads(file.read())
+                self.shoe = Shoe()
+                self.shoe.generateDeck(data["deckCount"])
+                for _ in range(data["shuffleCount"]):
+                    self.shoe.shuffle()
 
     def dealCards(self):
         for i in range(2):

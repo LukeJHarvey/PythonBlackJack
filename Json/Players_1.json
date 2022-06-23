@@ -1,0 +1,22 @@
+{
+    "Start_Cash": 1000,
+    "Players": [
+        {
+            "Name": "John",
+            "Manual":false
+        },
+        {
+            "Name": "Peter",
+            "Manual":false
+        },
+        {
+            "Name": "Alice",
+            "Manual":false
+        },
+        {
+            "Name": "Player",
+            "Manual":false,
+            "tips": false
+        }
+    ]
+}
